@@ -235,7 +235,7 @@ All the datasets use the standard `admin`/`admin` credentials.
    
 1. Log in as a user with the **Bamboo System Administrators** [global permission](https://confluence.atlassian.com/adminjiraserver/managing-global-permissions-938847142.html).
 1. Go to **![cog icon](/platform/marketplace/images/cog.png) &gt; Overview &gt; Import** from the menu.
-1. Populate the **Restore file path** field with `home/ubuntu/bamboo-home/shared/dcapt-bamboo.zip`.
+1. Populate the **Restore file path** field with `/home/ubuntu/bamboo-home/shared/dcapt-bamboo.zip`.
 1. Uncheck **Backup data** option.
 1. Check **Clear artifact directory** option.
 1. Click **Import** and **Confirm** and wait until the import is completed.
@@ -496,7 +496,7 @@ Use [scp](https://man7.org/linux/man-pages/man1/scp.1.html) command to copy repo
 Do not forget to attach performance testing results to your DCHELP ticket.
 {{% /warning %}}
 
-1. Make sure you have reports folders with bamboo performance scenario results. 
+1. Make sure you have report folder with bamboo performance scenario results. 
    Folder should have `profile.csv`, `profile.png`, `profile_summary.log` and profile run result archives.
 1. Attach report folder to your DCHELP ticket.
 

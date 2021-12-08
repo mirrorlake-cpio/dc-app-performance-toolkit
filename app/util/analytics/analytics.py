@@ -17,7 +17,7 @@ MIN_DEFAULTS = {JIRA: {'test_duration': 2700, 'concurrency': 200},
                 BITBUCKET: {'test_duration': 3000, 'concurrency': 20, 'git_operations_per_hour': 14400},
                 JSM: {'test_duration': 2700, 'customer_concurrency': 150, 'agent_concurrency': 50},
                 CROWD: {'test_duration': 2700, 'concurrency': 1000},
-                BAMBOO: {'test_duration': 2700, 'concurrency': 200, 'parallel_plans_count': 45}
+                BAMBOO: {'test_duration': 2700, 'concurrency': 200, 'parallel_plans_count': 40}
                 }
 CROWD_RPS = {'server': 50, 1: 50, 2: 100, 4: 200}  # Crowd requests per second for 1,2,4 nodes.
 
@@ -135,6 +135,19 @@ class AnalyticsCollector:
                     if self.concurrency_agents < MIN_DEFAULTS[JSM]['agent_concurrency']:
                         err_msg.append(f"The concurrency_agents = {self.concurrency_agents} is less than "
                                        f"required value {MIN_DEFAULTS[JSM]['agent_concurrency']}.")
+
+                elif self.app_type == BAMBOO:
+                    if self.actual_duration < MIN_DEFAULTS[self.app_type]['test_duration']:
+                        err_msg.append(f"The actual test duration {self.actual_duration} is less than "
+                                       f"required value {MIN_DEFAULTS[self.app_type]['test_duration']}")
+                    if self.concurrency < MIN_DEFAULTS[self.app_type]['concurrency']:
+                        err_msg.append(f"The run concurrency {self.total_actions_per_hour} is less "
+                                       f"than minimum concurrency "
+                                       f"required {MIN_DEFAULTS[self.app_type]['concurrency']}")
+                    if self.parallel_plans_count < MIN_DEFAULTS[self.app_type]['parallel_plans_count']:
+                        err_msg.append(f"The parallel_plans_count {self.parallel_plans_count} is less "
+                                       f"than minimum parallel_plans_count value "
+                                       f"required {MIN_DEFAULTS[self.app_type]['parallel_plans_count']}")
 
                 elif self.app_type == CROWD:
                     if ramp_up < ramp_up_compliant:
