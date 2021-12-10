@@ -37,7 +37,7 @@ how to deploy a Bamboo Data Center environment.
 installation flow for [linux environment](https://confluence.atlassian.com/bamboo/installing-bamboo-on-linux-289276792.html):
 
 1. Create Bamboo instance:
-   1. [Launch AWS EC2 instance](https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html). 
+   1. [Launch AWS EC2 instance](https://console.aws.amazon.com/ec2/). 
    1. OS: select from Quick Start `Ubuntu Server 20.04 LTS`.
    1. Instance type: [`m5.xlarge`](https://aws.amazon.com/ec2/instance-types/m5/)
    1. Storage size: `100` GiB
@@ -127,7 +127,7 @@ installation flow for [linux environment](https://confluence.atlassian.com/bambo
     Then select **Finish**.
       
 1. Create remote agents instance:
-   1. [Launch AWS EC2 instance](https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html). 
+   1. [Launch AWS EC2 instance](https://console.aws.amazon.com/ec2/). 
    1.  OS: select from Quick Start `Ubuntu Server 20.04 LTS`.
    1. Instance type: [`m5.2xlarge`](https://aws.amazon.com/ec2/instance-types/m5/)
    1. Storage size: `100` GiB
@@ -263,6 +263,7 @@ your app. For example, application setup screen or other one-time use cases are 
 If your app introduces new functionality for Bamboo entities, for example new task, it is important to extend base 
 dataset with your app specific functionality.
 
+1. Follow installation instructions described in [bamboo dataset generator README.md](https://raw.githubusercontent.com/atlassian/dc-app-performance-toolkit/master/app/util/bamboo/bamboo_dataset_generator/README.md)
 1. Open `app/util/bamboo/bamboo_dataset_generator/src/main/java/bamboogenerator/Main.java` and set:
    - `BAMBOO_SERVER_URL`: url of Bamboo stack
    - `ADMIN_USER_NAME`: username of admin user (default is `admin`)
@@ -274,7 +275,7 @@ permissions as admin user.
     ```
     or
     ``` bash
-    set BAMBOO_TOKEN newly_generarted_token     # for Windows
+    set BAMBOO_TOKEN=newly_generarted_token     # for Windows
     ```
 1. Open `app/util/bamboo/bamboo_dataset_generator/src/main/java/bamboogenerator/service/generator/plan/PlanGenerator.java` 
 file and modify plan template according to your app. e.g. add new task.
@@ -286,6 +287,13 @@ file and modify plan template according to your app. e.g. add new task.
     ``` bash
     run          # for Windows
     ```
+1. Login into Bamboo UI and make sure that plan configurations were updated.
+1. Default duration of the plan is 60 seconds. Measure plan duration with new app-specific functionality and modify
+   `default_dataset_plan_duration` value accordingly in `bamboo.yml` file.
+
+   For example, if plan duration with app-specific task became 70 seconds, than `default_dataset_plan_duration`
+   should be set to 70 seconds in `bamboo.yml` file.
+
 ### Example of app-specific Selenium action development
 For example, you develop an app that adds some additional UI elements to view plan summary page. 
 In this case, you should develop Selenium app-specific action:
@@ -365,7 +373,7 @@ local machine eliminates network fluctuations and guarantees stable CPU and memo
    ```  
 
 1. Push your changes to the forked repository.
-1. [Launch AWS EC2 instance](https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html). 
+1. [Launch AWS EC2 instance](https://console.aws.amazon.com/ec2/). 
    * OS: select from Quick Start `Ubuntu Server 20.04 LTS`.
    * Instance type: [`c5.2xlarge`](https://aws.amazon.com/ec2/instance-types/c5/)
    * Storage size: `30` GiB
