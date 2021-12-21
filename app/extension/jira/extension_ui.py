@@ -34,7 +34,7 @@ def app_specific_action_planchart(webdriver, datasets):
         @print_timing("selenium_app_custom_action:view_dashboard_mirrorlake_planchart")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/Dashboard.jspa?selectPageId=10101")
-            page.wait_until_visible((By.ID, "gadget-10101-title"))  # Wait for gadget visible
+            page.wait_until_visible((By.ID, "gadget-10102-title"))  # Wait for gadget visible
             #page.wait_for_page_loaded()
         sub_measure()
 
