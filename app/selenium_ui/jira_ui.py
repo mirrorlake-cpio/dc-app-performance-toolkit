@@ -66,6 +66,13 @@ Refer to `app/selenium_ui/jira/modules.py` for examples.
 #     extension_ui.app_specific_action(jira_webdriver, jira_datasets)
 
 
+def test_1_selenium_custom_action_pivotchart(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.app_specific_action_pivotchart(jira_webdriver, jira_datasets)
+
+def test_1_selenium_custom_action_planchart(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.app_specific_action_planchart(jira_webdriver, jira_datasets)
+
+
 # this action should be the last one
 def test_2_selenium_z_log_out(jira_webdriver, jira_datasets, jira_screen_shots):
     modules.log_out(jira_webdriver, jira_datasets)
