@@ -37,7 +37,7 @@ def app_specific_action_planchart(webdriver, datasets):
             #!!!!!! VERIFY AND CORRECT THE DASHBOARD ID
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/Dashboard.jspa?selectPageId=10101")
             #!!!!!! VERIFY AND CORRECT THE GADGET-TITLE-ID
-            page.wait_until_visible((By.ID, "gadget-10102-title"))  # Wait for gadget visible
+            page.wait_until_visible((By.ID, "gadget-10101-title"))  # Wait for gadget visible
             #page.wait_for_page_loaded()
         sub_measure()
 
